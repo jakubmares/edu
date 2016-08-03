@@ -1,0 +1,19 @@
+{extends '../../../../presenters/templates/@layout.latte'}
+{block title}Zóna{/block}
+{block module}Zóna uživatele{/block}
+{block mainNav}
+{if count($companies) == 1}
+    {var $comapny = current($companies)}
+    <li n:class="$presenter->isLinkCurrent(':Zone:Company:*') ? active">
+        <a n:href=":Zone:Company:detail $comapny->id" >{$comapny->name}</a>
+    </li>
+{/if}
+<li n:if="count($companies) > 1" n:class="$presenter->isLinkCurrent(':Zone:Homepage:default') ? active"><a n:href=":Zone:Homepage:default" >Spravované firmy</a></li>
+    {/block}
+    {block baseContent}
+<div class="container">
+    {include content}
+</div>
+{/block}
+{block footer}
+{/block}

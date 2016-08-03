@@ -1,0 +1,51 @@
+{* Latte template *}
+
+{block subContent}
+<h1 n:block=title>Vzdělávací společnosti odpovídající vašemu hledání</h1>
+<div class="ev-list">
+    <div class="panel panel-default ev-body__terms">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <div class="media">
+                <div class="media-left">
+                    <img class="media-object" src="/images/book.png" alt="KATALOG VZDĚLÁVACÍCH SPOLEČNOSTÍ">
+                </div>
+                <div class="media-body media-middle">
+                    <h2 class="media-heading">Nalezeno {$paginator->itemCount} vzdělávacích společností.</h2>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- List group -->
+        <ul class="list-group">
+            <li n:foreach="$companies as $company" class="list-group-item">
+                <div class="row">
+                    <div class="col-md-4 ev-list__big">
+                        <a n:href="Company:company $company->seokey">{$company->name}</a>
+                    </div>
+                    <div class="col-md-4">
+                        {if $company->addressBase}
+                            <a n:if="$company->addressBase->city || $company->addressBase->street" 
+                               href="https://www.google.cz/maps/place/{$company->addressBase->address|webalize}" target="blank">
+                                {if $company->addressBase->street}{$company->addressBase->streetAd}<br/>{/if}
+                                {$company->addressBase->city}
+                            </a>
+                        {/if}
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <a n:if="$company->logo" n:href="Company:company $company->seokey">
+                            <img src="{$company->logo}" alt="{$company->name}">
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>    
+    <div class="row">
+        <div class="col-md-12 text-center">
+            {include paginator}
+        </div>
+    </div>
+</div>
+{/block}

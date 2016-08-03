@@ -1,0 +1,27 @@
+{* Latte template *}
+
+{block content}
+{include "nav.latte", company => $company}
+<div class="container-fluid ev-body__container--1">
+    <div class="page-header">
+        <h2>Videa společnosti <a n:href="CompanyVideo:create $company->id" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></h2>
+    </div>
+    {foreach $videos as $video}
+        {first 4}<div class="row">{/first}
+            <div class="col-md-3">
+                <div class="thumbnail">
+                    <div class="embed-responsive embed-responsive-4by3">
+                        <iframe class="embed-responsive-item" src='https://www.youtube.com/embed/{$video->video}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen="1"'></iframe>
+                    </div>
+                    <div class="caption">
+                        <h5>{$video->title} 
+                            <a n:href="CompanyVideo:edit $video->id"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                            <a n:href="CompanyVideo:delete $video->id"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                        </h5>
+                        <p>Aktivni: {$video->active?'Ano':'Ne'}</p>
+                    </div>
+                </div>
+            </div>
+            {last 4}</div>{/last}
+        {/foreach}
+</div>

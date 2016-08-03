@@ -1,0 +1,546 @@
+.ev-body,
+.ev-body--in {
+  font-size: 13px;
+}
+.ev-body h1,
+.ev-body--in h1 {
+  margin-top: 30px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.ev-body h2,
+.ev-body h3,
+.ev-body h4,
+.ev-body--in h2,
+.ev-body--in h3,
+.ev-body--in h4 {
+  font-size: 14px;
+  font-weight: bold;
+}
+.ev-body .alert,
+.ev-body--in .alert {
+  z-index: 1000;
+}
+.ev-body .page-header,
+.ev-body--in .page-header {
+  margin: 20px 0 20px;
+}
+.ev-body__block,
+.ev-body--in__block {
+  margin-top: 30px;
+}
+.ev-body__login--left,
+.ev-body--in__login--left {
+  font-size: 14px;
+  padding-top: 30px;
+  background-color: #cbe0f3;
+  border-radius: 5px 0 0 5px;
+  min-height: 230px;
+}
+.ev-body__login--right,
+.ev-body--in__login--right {
+  font-size: 14px;
+  padding-top: 30px;
+  background-color: #bed9ee;
+  border-radius: 0 5px 5px 0;
+  min-height: 230px;
+}
+.ev-body__form-row,
+.ev-body--in__form-row {
+  height: 43px;
+  margin-bottom: 5px;
+  vertical-align: middle;
+  line-height: 34px;
+}
+.ev-body__terms,
+.ev-body--in__terms {
+  border: none;
+}
+.ev-body__terms .panel-heading,
+.ev-body--in__terms .panel-heading {
+  background-color: #e6dcf5;
+  background-image: none;
+}
+.ev-body__terms .list-group-item,
+.ev-body--in__terms .list-group-item {
+  background-color: #ece4f9;
+  background-image: none;
+}
+.ev-body__articles,
+.ev-body--in__articles {
+  background-color: #f0f0f0;
+  font-size: 12px;
+}
+.ev-body__articles article,
+.ev-body--in__articles article {
+  margin: 30px 30px 0px 20px;
+  padding: 0 0 20px 0;
+  border-bottom: 1px solid #d7d7d7;
+}
+.ev-body__form h1,
+.ev-body--in__form h1 {
+  font-weight: normal;
+  margin-bottom: 25px;
+}
+.ev-body__form form,
+.ev-body--in__form form {
+  background-color: #cbe0f3;
+  padding: 15px 30px 1px 1px;
+  border-radius: 4px;
+}
+.ev-body__form form .btn,
+.ev-body--in__form form .btn {
+  min-width: 100px;
+}
+.ev-body__container--1,
+.ev-body--in__container--1 {
+  background-color: #f0f0f0;
+}
+.ev-body__container--2,
+.ev-body--in__container--2 {
+  background-color: #e9e0c6;
+}
+.ev-body__container--3,
+.ev-body--in__container--3 {
+  background-color: #d6e1f1;
+}
+.ev-body--in {
+  margin-top: 50px;
+}
+.ev-body--in .table {
+  background-color: white;
+}
+.ev-body--in form.grido {
+  background-color: transparent;
+}
+.ev-body--in nav form {
+  background-color: transparent;
+}
+.ev-body--in form {
+  background-color: #cbe0f3;
+  padding: 15px 30px 1px 1px;
+  border-radius: 4px;
+}
+.ev-body--in form legend {
+  font-size: 14px;
+  font-weight: bold;
+}
+.ev-body--in form fieldset {
+  margin: 0 10px 0 10px;
+}
+.ev-body--in form .btn {
+  min-width: 100px;
+}
+.ev-body--in .container-fluid:last-child {
+  margin-bottom: 30px;
+}
+.ev-body--in .nav-tabs li.active a {
+  background-color: #f0f0f0;
+}
+.ev-footer {
+  margin-top: 20px;
+}
+.ev-footer h2 {
+  font-size: 14px;
+  color: #b2b2b2;
+  font-weight: 200;
+}
+.ev-footer h3 {
+  font-size: 16px;
+  color: #b2b2b2;
+  font-weight: 200;
+}
+.ev-footer ul {
+  list-style-type: none;
+  list-style-position: inside;
+  padding-left: 0px;
+}
+.ev-right-panel {
+  padding-top: 70px;
+}
+.ev-right-panel h3 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #b2b2b2;
+}
+.ev-right-panel .ev-right-panel__partners {
+  margin-bottom: 20px;
+}
+.ev-right-panel .ev-right-panel__partners .ev-right-panel__row {
+  padding: 0px 10px 0px 10px;
+}
+.ev-right-panel .ev-right-panel__partners .ev-right-panel__row .col-md-6 {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+.ev-right-panel .ev-right-panel__partners .ev-right-panel__row .col-md-6 .thumbnail {
+  margin-bottom: 10px;
+}
+.ev-right-panel ul.ev-right-panel__categories {
+  font-weight: 600;
+  padding-left: 0px;
+  list-style-type: none;
+  list-style-position: inside;
+}
+.ev-right-panel ul.ev-right-panel__focuses {
+  font-weight: 400;
+  padding-left: 10px;
+  list-style-type: none;
+  list-style-position: inside;
+}
+.ev-right-panel .ev-right-panel__top-companies {
+  margin-bottom: 20px;
+}
+.ev-right-panel .ev-right-panel__top-companies ul {
+  padding-left: 0px;
+  list-style-type: none;
+  list-style-position: inside;
+}
+.ev-right-panel .ev-right-panel__top-companies ul li span.glyphicon {
+  float: left;
+}
+.ev-right-panel .ev-right-panel__top-companies ul li span.focus {
+  padding-left: 16px;
+  display: block;
+}
+.ev-left-panel__logo {
+  margin-bottom: 20px;
+}
+.ev-left-panel ul.ev-left-panel__category-list {
+  list-style-image: url('/images/left-category-icon.jpg');
+  list-style-position: inside;
+  padding-left: 0px;
+}
+.ev-left-panel ul.ev-left-panel__category-list li.ev-left-panel__category {
+  font-weight: bold;
+  font-size: 17px;
+}
+.ev-left-panel ul.ev-left-panel__category-list ul.ev-left-panel__focus-list {
+  padding-left: 0px;
+  font-weight: normal;
+  font-size: 13px;
+  list-style-type: none;
+  list-style-image: none;
+  list-style-position: inside;
+}
+.ev-left-panel__interviews {
+  border-top: 1px solid #eee;
+}
+.ev-left-panel__interviews h2 {
+  padding: 12px 0 0 0px;
+  font-size: 15px;
+  font-weight: bold;
+}
+.ev-left-panel__interview {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0 10px 0;
+}
+.ev-left-panel__interview h3 {
+  font-size: 13px;
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+.ev-left-panel__interview-img {
+  width: 80px;
+  float: left;
+  margin: 0 5px 5px 0;
+}
+.ev-left-panel__interview-img img {
+  width: 80px;
+}
+.ev-left-panel__interview:after {
+  content: " ";
+  clear: both;
+  display: table;
+}
+.ev-banner {
+  font-size: 20px;
+  color: #8c8c8c;
+}
+.ev-banner p {
+  margin: 25px 0 25px 0;
+}
+.ev-main-tabs form {
+  background-color: transparent;
+}
+.ev-main-tabs .nav-tabs > li {
+  font-size: 16px;
+  font-weight: 600;
+  height: 42px;
+}
+.ev-main-tabs .nav-tabs > li a.ev-main-tabs__course-tab {
+  color: #543087;
+}
+.ev-main-tabs .nav-tabs > li a.ev-main-tabs__company-tab {
+  color: #d98128;
+}
+.ev-main-tabs .tab-content .ev-main-tabs__company-pane {
+  border-radius: 5px 5px 5px 5px;
+  padding: 10px 15px;
+  background-color: #d98128;
+  color: white;
+}
+.ev-main-tabs .tab-content .ev-main-tabs__course-pane {
+  border-radius: 0px 5px 5px 5px;
+  padding: 10px 15px;
+  background-color: #543087;
+  color: white;
+}
+.ev-main-tabs .tab-content label {
+  font-size: 16px;
+  margin: 15px 0 5px 0;
+  font-weight: bold;
+}
+.ev-main-tabs .tab-content .form-control {
+  font-size: 18px;
+  padding: 8px 10px 8px 10px;
+  height: 45px;
+  color: #9079b0;
+}
+.ev-main-tabs .tab-content .ev-main-tabs__button--more {
+  font-size: 16px;
+  color: white;
+  line-height: 35px;
+}
+.ev-main-tabs .tab-content .ev-main-tabs__button {
+  margin: 15px 0 5px 0;
+  width: 170px;
+  font-weight: 700;
+  color: #543087;
+}
+.ev-main-tabs .tab-content .ev-main-tabs__button--company {
+  margin: 15px 0 5px 0;
+  width: 170px;
+  font-weight: 700;
+  color: #d98128;
+}
+.ev-main-tabs .nav-tabs > li > a {
+  border: 0px;
+  border-radius: 5px 5px 0 0;
+}
+.ev-main-tabs .nav > li {
+  margin-bottom: 0;
+}
+.ev-main-tabs .nav > li > a:focus,
+.ev-main-tabs .nav > li > a:hover {
+  background-color: white;
+}
+.ev-main-tabs .nav-tabs > li.active > a,
+.ev-main-tabs .nav-tabs > li.active > a:focus,
+.ev-main-tabs .nav-tabs > li.active > a:hover {
+  border: 0px none;
+}
+.ev-main-tabs .nav-tabs > li.active > a.ev-main-tabs__course-tab {
+  background-color: #543087;
+  color: white;
+}
+.ev-main-tabs .nav-tabs > li.active > a.ev-main-tabs__company-tab {
+  background-color: #d98128;
+  color: white;
+}
+.ev-main-tabs .nav-tabs {
+  border: 0px none;
+}
+.ev-advices {
+  margin: 20px 0 20px 0;
+}
+.ev-advices .media-heading {
+  color: #eb8725;
+  font-size: 13px;
+  font-weight: bold;
+  font-style: italic;
+}
+.ev-term__date-bg,
+.ev-term--lastminute__date-bg {
+  font-size: 12px;
+  font-weight: bold;
+  width: 94px;
+  height: 39px;
+  padding: 6px 5px 5px 7px;
+  text-align: center;
+  background: #ece4f9 url('/images/table-date-normal.gif') no-repeat;
+}
+.ev-term__date-bg__left,
+.ev-term--lastminute__date-bg__left {
+  padding-right: 3px;
+  text-align: center;
+  float: left;
+}
+.ev-term__date-bg__year,
+.ev-term--lastminute__date-bg__year {
+  font-size: 10px;
+}
+.ev-term__name,
+.ev-term--lastminute__name {
+  font-weight: 700;
+}
+.ev-term__coll--middle,
+.ev-term--lastminute__coll--middle {
+  vertical-align: middle;
+  line-height: 67px;
+}
+.ev-term__price,
+.ev-term--lastminute__price {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.ev-term__price--discount,
+.ev-term--lastminute__price--discount {
+  color: red;
+  font-weight: bold;
+}
+.ev-term__price--old,
+.ev-term--lastminute__price--old {
+  font-size: calc(90%);
+  margin-bottom: 4px;
+  text-decoration: line-through;
+  font-weight: bold;
+}
+.ev-term address,
+.ev-term--lastminute address {
+  margin-bottom: 0px;
+}
+.ev-navbar-search {
+  padding: 8px 15px;
+  margin-bottom: 20px;
+  list-style: none;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+.ev-navbar-search .ev-navbar-search__row {
+  padding-bottom: 10px;
+}
+.ev-navbar-search .ev-navbar-search__row--thin {
+  padding-bottom: 0px;
+}
+.ev-list {
+  margin-top: 20px;
+  padding-top: 20px;
+}
+.ev-list__headline {
+  font-weight: bold;
+  vertical-align: middle;
+}
+.ev-list__big {
+  font-weight: 600;
+  font-size: 14px;
+}
+.ev-list address {
+  margin-bottom: 0px;
+}
+.ev-list--personality .ev-list__list {
+  background-color: #ece4f9;
+  padding: 20px 20px 20px 10px;
+  border-radius: 4px;
+}
+.ev-list--personality .ev-list__list .media:first {
+  margin-top: 10px;
+}
+.ev-list--personality .ev-list__list .media:not(:first-child) {
+  margin-top: 20px;
+}
+.ev-list--personality .ev-list__list .media h2 {
+  margin: 0;
+}
+.ev-article {
+  font-size: 12px;
+  padding: 0px;
+}
+.ev-article__body {
+  background-color: #f0f0f0;
+  padding: 15px 10px 5px 10px;
+  border-radius: 4px;
+}
+.ev-article__header {
+  background-color: #f0f0f0;
+  padding: 15px 10px 5px 10px;
+  border-radius: 4px 4px 0 0;
+}
+.ev-article__header-author {
+  margin-bottom: 10px;
+}
+.ev-article__content {
+  border-radius: 0 0 4px 4px;
+  background-color: #f0f0f0;
+  padding: 5px 10px 20px 10px;
+}
+.ev-article h1 {
+  font-size: 18px;
+  font-weight: normal;
+  margin: 20px 0 30px 0;
+}
+.ev-article h2 {
+  font-size: 14px;
+}
+.ev-article h3 {
+  font-size: 14px;
+}
+.ev-article h4 {
+  font-size: 14px;
+}
+.ev-lastminutes h2 {
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.ev-lastminutes h3 {
+  font-size: 12px;
+  font-weight: normal;
+  margin: 0;
+}
+.ev-lastminutes .panel {
+  border: none;
+}
+.ev-lastminutes .panel-heading {
+  border-bottom: none;
+}
+.ev-lastminutes .list-group-item {
+  background-color: #f0f0f0;
+  font-size: 11px;
+}
+.ev-lastminutes .panel-footer {
+  background-color: #f0f0f0;
+}
+.ev-articles h2 {
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.ev-articles h3 {
+  font-size: 12px;
+  font-weight: normal;
+  margin: 0;
+}
+.ev-course h1 {
+  font-weight: normal;
+  margin: 20px 0 20px 0;
+}
+.ev-course__info {
+  background-color: #f0f0f0;
+  margin: 0px;
+  border-radius: 4px;
+  padding-top: 6px;
+  margin-bottom: 10px;
+}
+.ev-course__info th {
+  padding: 6px 10px 6px 0;
+}
+.ev-course__info td {
+  padding: 6px 0 6px 0;
+}
+.ev-course__buttons {
+  padding: 10px 0 10px 0;
+}
+.ev-course .nav-tabs li.active a {
+  background-color: #f0f0f0;
+}
+.ev-course .tab-content {
+  background-color: #f0f0f0;
+  padding: 30px 10px 20px 10px;
+  margin-bottom: 20px;
+  border-radius: 0 0 4px 4px;
+}
+body {
+  font-family: Open sans !important;
+  font-size: 13px;
+}

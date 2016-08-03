@@ -1,0 +1,15 @@
+{* Latte template *}
+
+{block content}
+<div class="page-header">
+    <h1>
+        Administrace firem 
+        <a n:href="Company:create" class="btn btn-primary" role="button">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </a>
+    </h1>
+</div>
+
+{control listGrid}
+
+{/block}

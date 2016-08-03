@@ -1,0 +1,46 @@
+{block content}
+<div class="page-header">
+    {include breadcrumbLayout}
+    <h1>Termín - <a n:href="Course:terms $course->id">{$course->name}</a> 
+        <a n:href="Term:edit $term->id" class="btn btn-primary" role="button"  data-toggle="tooltip" data-placement="bottom" title="Editovat">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+        </a>
+        <a n:href="Term:copy $term->id" class="btn btn-primary" role="button" data-toggle="tooltip" data-placement="bottom" title="Vytvořit kopii">
+            <span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
+        </a>
+        <a n:href="Term:delete $term->id" class="btn btn-primary" role="button" data-toggle="tooltip" data-placement="bottom" title="Smazat">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        </a>
+    </h1>
+</div>
+<ul class="list-group">
+    <li class="list-group-item"><b>Bez termínu:</b> {$term->noterm?'Ano':'Ne'}</li>
+    <li class="list-group-item"><b>Termín:</b> {$term->from|date:'d.m.Y'} - {$term->to|date:'d.m.Y'}</li>
+    <li class="list-group-item"><b>Typ ceny:</b> {$term->priceFlagLabel}</li>
+    <li class="list-group-item"><b>Základní cena cena:</b> {$term->price} {$term->currency}</li>
+    <li class="list-group-item"><b>Sleva:</b> {$term->discount} {$term->currency}</li>
+    <li class="list-group-item"><b>Daň:</b> {$term->vat}%</li>
+    <li class="list-group-item"><b>Výsledná cena cena:</b> {$term->totalPrice} {$term->currency}</li>
+    <li class="list-group-item"><b>Adresa:</b> {$term->address}</li>
+    <li class="list-group-item"><b>Typ kurzu:</b> {$term->addressFlagLabel}</li>
+    <li class="list-group-item"><b>Aktivní:</b> {$term->active?'Ano':'Ne'}</li>
+    <li class="list-group-item">
+        <b>Lektor:</b>
+        <div class="media">
+            <div class="media-left">
+                <img class="media-object" src="{$term->lectorImage}" alt="{$term->lector}">
+            </div>
+            <div class="media-body">
+                <div><b>{$term->lector}</b></div>
+                <div class="row">
+                    <div class="col-md-4"><b>Popis:</b></div>
+                    <div class="col-md-8">{!$term->lectorDescription}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><b>Dovednosti:</b></div>
+                    <div class="col-md-8">{!$term->lectorSkills}</div>
+                </div>
+            </div>
+        </div>
+    </li>
+</ul>

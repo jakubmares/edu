@@ -1,0 +1,258 @@
+
+{extends '../../../../presenters/templates/@layout.latte'}
+
+{block module}Zona uzivatele{/block}
+
+{block baseContent}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-9 col-lg-8 col-lg-offset-1">
+
+            {block content}
+            <a n:href="Homepage:default">
+                <img src="/images/sub-logo-3.jpg" alt="Evzdelavani.cz">
+            </a>
+
+            {include breadcrumbLayout}
+
+            {include subContent}
+
+            {/block}
+
+        </div>
+        <div class="col-md-3 col-lg-2 ev-right-panel">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a n:href="StaticPage:contacts">Rychlý kontakt</a>
+                </div>
+            </div>
+            {block login}
+            <div n:if="!$user->isLoggedIn()" class="panel panel-default">
+                <div class="panel-body">
+                    <a n:href="Sign:in">Přihlásit se</a>
+                </div>
+            </div>
+            {/block}
+            <a n:href="Homepage:default" class="thumbnail" aria-controls="Katalog kurzů">
+                <img src="/images/hledat-kurz.png" alt="hledat kurz" >
+            </a>
+            <a n:href="Homepage:searchCompany" class="thumbnail" aria-controls="Katalog firem">
+                <img src="/images/hledat-firmu.png" alt="hledat firmu">
+            </a>
+            {block rightContent}
+            {/block}
+            <div class="ev-right-panel__partners">
+                <div class="row text-center">
+                    <div class="col-md-12"><h3>PATNEŘI PORTÁLU</h3></div>
+                </div>
+
+                {foreach $partners as $partner}
+                    {first 2}
+                        <div class="row ev-right-panel__row">
+                        {/first}
+                        <div class="col-md-6">
+                            <a n:href="Company:company $partner->seokey" class="thumbnail same-height">
+                                <img src="{$partner->logo}" alt="{$partner->name}" class="img-responsive"/>
+                            </a>
+                        </div>
+
+                        {last 2}
+                        </div>
+                    {/last}
+                {/foreach}
+            </div>
+
+            <div n:if="$lastImage" class="ev-right-panel__new-image">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <h3>Nový obrázek</h3>
+                    </div>
+                </div>
+
+                <div class="thumbnail">
+                    <div class="caption">
+                        <p><a n:href="Company:company $lastImage->company->seokey">{$lastImage->company->name}</a></p>
+                        <p>{$lastImage->title}</p>
+                    </div>
+                    <img src="{$lastImage->img}" alt="{$lastImage->title}">
+                </div>
+
+            </div>
+
+            <div n:if="$lastVideo" class="ev-right-panel__new-video">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <h3>Nové video</h3>
+                    </div>
+                </div>
+
+                <div class="thumbnail">
+                    <div class="caption">
+                        <p><a n:href="Company:company $lastVideo->company->seokey">{$lastVideo->company->name}</a></p>
+                        <p>{$lastVideo->title}</p>
+                    </div>
+                    <div class="embed-responsive embed-responsive-4by3">
+                        <iframe class="embed-responsive-item" src="//www.youtube.com/embed/{$lastVideo->video}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+            </div>
+            {block topCompanies}
+            {/block}
+        </div>
+    </div>
+</div>
+<footer class="ev-footer container-fluid">
+    <div class="row">
+        <div class="col-md-12 col-lg-10 col-lg-offset-1">
+
+            {block collaborators}
+            <div class="row">
+                <div class="col-md-12"><h2>SPOLUPRACUJEME:</h2></div>
+            </div>
+            {foreach $collaborators as $collaborator}
+                {first 4}
+                    <div class="row">
+                    {/first}
+                    <div class="col-md-3">
+                        <a href="{$collaborator->url}" target="blank" class="thumbnail">
+                            <img src="{$collaborator->image}" alt="{$collaborator->name}">
+                        </a>
+                    </div>
+                    {last 4}
+                    </div>
+                {/last}
+            {/foreach}
+            {/block}
+            <hr>
+
+            <nav class="row">
+                <div class="col-md-4  col-md-offset-1">
+                    <h3>Mapa stánek</h3>
+                    <ul class=""> 
+                        <li><a n:href="Course:default">Seznam kurzů</a></li> 
+                        <li><a n:href="Course:lastminute">Lastminute kurzy</a></li> 
+                        <li><a n:href="Company:default">Vzdělávací společnosti</a></li> 
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3>Ostatní stánky</h3>
+                    <ul class=""> 
+                        <li><a n:href="StaticPage:conditions">Všeobecné podmínky</a></li> 
+                        <li><a n:href="StaticPage:codex">Názorový kodex a podmínky užívání</a></li> 
+                        <li n:if="$priceList"><a href="{$basepath}/{$priceList->getPath()}" target='blank'>{$priceList->title}</a></li> 
+                        <li><a n:href="Homepage:forDownload">Ke stažení</a></li> 
+                        <li><a n:href="Homepage:partners">Partneři</a></li> 
+                        <li><a n:href="StaticPage:contacts">Kontakty</a></li>
+                    </ul> 
+                </div>
+                <div class="col-md-2">
+                    <h3>Sociální sítě</h3>
+                    <ul class="">
+
+                        <li class="facebook">
+                            <a href="https://www.facebook.com/evzdelavani.cz" target="blank" title="Sleduj Evzdelavani na Facebooku">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="twitter">
+                            <a href="https://twitter.com/evzdelavani" target="blank" title="Sleduj Evzdelavani na Twitteru">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    Copyright (c) 2016, evzdelavani.cz, s.r.o. Všechna práva vyhrazena.
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</footer>
+{/block}
+
+
+
+{define termsListItem}
+<div class="row ev-term">
+    <div class="col-md-2 ev-term__date">
+        <div class="ev-term__date-bg">
+            {if $term->noterm}
+                Bez termínu
+            {else}
+                <div n:if="$term->from != $term->to" class="ev-term__date-bg__left">
+                    {$term->from|date:'d.m.'}
+                    <div class="ev-term__date-bg__year">{$term->from|date:'Y'}</div>
+                </div>
+                <div n:if="$term->from != $term->to" class="ev-term__date-bg__left">&nbsp;-</div>
+                <div>
+                    {$term->to|date:'d.m.'}
+                    <div class="ev-term__date-bg__year">{$term->to|date:'Y'}</div>
+                </div>
+                <div class="clearfix"></div>
+            {/if}
+        </div>
+
+    </div>
+    <div class="col-md-5 ev-term__name">
+        <a n:href="Course:course $term->course->seokey">
+            {$term->course->name}
+        </a>
+    </div>
+    <div class="col-md-3">
+        {if $term->addressFlag}
+            <strong>
+                <a n:href="Company:company $term->course->company->seokey">
+                    {$term->course->company->name}
+                </a>
+            </strong><br/>
+            online kurz
+        {else}
+            <address>
+                <strong>
+                    <a n:href="Company:company $term->course->company->seokey">
+                        {$term->course->company->name}
+                    </a>
+                </strong>
+                <br/>
+                <a n:if="$term->city || $term->street" href="https://www.google.cz/maps/place/{$term->address|webalize}" target="blank">
+                    {if $term->street}{$term->streetAd}<br/>{/if}
+                    {$term->city}
+                </a>
+            </address>
+        {/if}
+    </div>
+    <div class="col-md-2 text-right">
+        {if $term->priceFlag || $term->noterm}
+            <strong>cena dohodou</strong>
+        {else}
+            <div n:if="$term->discount" class="ev-term__price--old">
+                {$term->noDiscountPrice|number:'0':',':' '} {$term->currency}
+            </div>
+            <div n:class="$term->discount ? 'ev-term__price--discount' , !$term->discount ? ev-term__price">
+                {$term->totalPrice|number:'0':',':' '} {$term->currency}
+            </div>
+        {/if}
+    </div>
+</div>
+{/define}
+
+{define #jsCallback}
+$('#{$control["searchCourseForm"][$input]->htmlId}').on('change', function() {
+$.nette.ajax({
+type: 'GET',
+url: '{link {$link}!}',
+data: {
+'value': $(this).val(),
+}
+});
+});
+{/define}
+
+
+
+

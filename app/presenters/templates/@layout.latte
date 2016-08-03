@@ -1,0 +1,138 @@
+{**
+ * @param string   $basePath web base path
+ * @param array    $flashes  flash messages 
+*}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {if isset($jsonLtd) && !empty($jsonLtd)}
+            <script type="application/ld+json">
+                {!$jsonLtd}
+            </script>
+        {/if}
+        <title>{ifset title}{include title|striptags} | {/ifset}evzdelavani</title>
+
+
+        
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,500italic,600italic,700italic,400,300,500,600,700&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="{$basePath}/css/jquery-ui.css">
+
+        <link rel="stylesheet" href="{$basePath}/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{$basePath}/css/bootstrap-theme.min.css">
+
+        <link rel="stylesheet" href="{$basePath}/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="{$basePath}/css/style.css">
+        {block head}{/block}
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body n:class="$user->isLoggedIn()?'ev-body--in',!$user->isLoggedIn()?'ev-body'">
+
+        <nav n:if="$user->isLoggedIn()" class="test navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a n:href=":Front:Homepage:default" >
+                        <img src="/images/logo-50.png" height="50px" width="50px" alt="..." class="img-circle"><span class="navbar-brand"><span>e</span>vzdelavani<span>.cz</span></span>
+                    </a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                    {ifset mainNav}{include mainNav}{/ifset}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li n:class="$presenter->isLinkCurrent(':Front:Sign:changePass')"><a n:href=":Front:Sign:changePass">Změna hesla</a></li>
+                    <li>
+                        <a n:if="!$user->isLoggedIn()" n:href=":Front:Sign:in">Log in <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>                              
+                        <a n:if="$user->isLoggedIn()" n:href=":Front:Sign:out">{$user->getIdentity()->firstname} {$user->getIdentity()->surname} <span class="glyphicon glyphicon-off" aria-hidden="true"></span></a>    
+                    </li>
+                </ul>
+                <ul n:if="$user->isLoggedIn()" class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Moduly <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">{block module}{/block}</li>
+                            <li role="separator" class="divider"></li>
+                            <li n:foreach="$modules as $module">
+                                <a href="{$module['action']}">{$module['name']}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <div n:foreach="$flashes as $flash" class="alert alert-{$flash->type} alert-dismissible fade in" role="alert" 
+         style="position: fixed; width: 80%; left: 10%;"> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> 
+        {$flash->message}
+    </div>
+    {include baseContent}
+
+    {block scripts}
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="{$basePath}/js/tinymce/tinymce.min.js"></script>
+    <script src="https://nette.github.io/resources/js/netteForms.min.js"></script>
+    <script src="{$basePath}/js/nette.ajax.js"></script>     
+    <script src="{$basePath}/js/bootstrap.min.js"></script>
+    <script src="{$basePath}/js/main.js"></script>
+    {/block}
+
+    {block callback}
+
+    {/block}
+
+</body>
+</html>
+
+{define paginator}
+<nav n:if="$paginator->getPageCount() > 1">
+    <ul class="pagination">
+        <li n:if="!$paginator->isFirst()">
+            <a n:href="paginate! ($paginator->getPage() - 1)" aria-label="Předchozí">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li n:foreach="$paginator->getPaginBefore() as $b">
+            <a n:href="paginate! $b"  >{$b}</a>
+        </li>
+        <li class="active">
+            <span>{$paginator->getPage()}</span>
+        </li>
+        <li n:foreach="$paginator->getPaginAfter() as $a" >
+            <a n:href="paginate! $a">{$a}</a>
+        </li>
+        <li n:if="!$paginator->isLast()" >
+            <a n:href="paginate! ($paginator->getPage() + 1)" aria-label="Další">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+{/define}
+
+{define breadcrumbLayout}
+<ol class="breadcrumb">
+    <li n:foreach="$breadcrumbs as $bc =>  $bcLink" n:class="!$bcLink?active">
+        {if $bcLink}
+            <a href="{$bcLink}">{$bc|firstUpper}</a>
+        {else}
+            {$bc|firstUpper}
+        {/if}
+    </li>
+</ol>
+{/define}

@@ -1,0 +1,46 @@
+{block subContent}
+{include 'nav.latte', company => $company,course =>$course}
+<div class="container-fluid ev-body__container--1">
+    <div class="page-header">
+        <h2>Terminy kurzu <a n:href="Term:create $course->id" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></h2>
+    </div>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Termín</th>
+                <th>Adresa</th>
+                <th>Lektor</th>
+                <th>Cena</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr n:foreach="$terms as $term">
+                <td>{$term->from|date:'d.m.Y'} - {$term->to|date:'d.m.Y'}</td>
+                <td>{$term->address}</td>
+                <td>{$term->lector}</td>
+                <td>
+                    {if $term->isPriceCustom()}
+                        Cena dohodou
+                    {else}
+                        {$term->totalPrice|number:'0':',':' '} {$term->currency}
+                    {/if}
+                </td>
+                <td>
+                    <a n:href="Term:detail $term->id" data-toggle="tooltip" data-placement="bottom" title="Detail">
+                        <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+                    </a>
+                    <a n:href="Term:edit $term->id" data-toggle="tooltip" data-placement="bottom" title="Editovat">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </a>
+                    <a n:href="Term:copy $term->id" data-toggle="tooltip" data-placement="bottom" title="Vytvořit kopii">
+                        <span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
+                    </a>
+                    <a n:href="Term:delete $term->id" data-toggle="tooltip" data-placement="bottom" title="Smazat" onclick="return confirm('Opravdu chcete termín smazat?')">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

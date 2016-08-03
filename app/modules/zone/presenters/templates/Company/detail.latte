@@ -1,0 +1,115 @@
+{* Latte template *}
+
+{block content}
+
+
+{include "nav.latte", company => $company}
+<div class="container-fluid ev-body__container--1">
+    <div class="page-header">
+        <h2>Profil společnosti <a n:href="edit $company->id" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></h2>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <img src="{$company->logo}" />
+                <div class="caption">
+
+                    <a n:href="editLogo $company->id" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                    <a n:href="deleteLogo! $company->id" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-9">
+            <ul class="list-group">
+                <li class="list-group-item"><b>ič:</b> {$company->ic}</li>
+                <li class="list-group-item"><b>dič:</b> {$company->dic}</li>
+                <li class="list-group-item">
+
+                    <b>fakturacní adresa:</b> 
+                    {if $company->addressBilling}
+                        {$company->addressBilling} 
+                        <a n:href="Address:editBilling $company->addressBilling->id">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        </a>
+                    {else}
+                        <a n:href="Address:createBilling $company->id">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </a>
+                    {/if}
+
+                </li>
+                <li class="list-group-item">
+
+                    <b>adresa:</b> 
+                    {if $company->addressBase}
+                        {$company->addressBase} 
+                        <a n:href="Address:editBase $company->addressBase->id">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        </a>
+                    {else}
+                        <a n:href="Address:createBase $company->id">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </a>
+                    {/if}
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container-fluid ev-body__container--2">
+    <div class="page-header">
+        <h2>Kontakty <a n:href="Contact:create $company->id" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></h2>
+    </div>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Typ</th>
+                <th>Jméno</th>
+                <th>e-mail</th>
+                <th>telefon</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr n:foreach="$contacts as $contact">
+                <td>{$contact->label}</td>
+                <td>{$contact->name}</td>
+                <td>{$contact->email}</td>
+                <td>{$contact->phone}</td>
+                <td>
+                    <a n:href="Contact:edit $contact->id"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                    <a n:href="Contact:delete $contact->id"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container-fluid ev-body__container--3">
+    <div class="page-header">
+        <h2>Adresy <a n:href="Address:create $company->id" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></h2>
+    </div>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Typ</th>
+                <th>Adresa</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr n:foreach="$addresses as $address">
+                <td>{$address->label}</td>
+                <td>{$address->address}</td>
+
+                <td>
+                    <a n:href="Address:edit $address->id"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                    <a n:href="Address:delete $address->id"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+

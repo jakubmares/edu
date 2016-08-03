@@ -1,0 +1,10 @@
+Dobrý den,<br>
+Vaše objednávka kurzu 
+<a n:href="//Course:course $course->seokey">{$course->name} ({$term->from|date:'d.m.Y'}<span n:if="$term->from != $term->to"> - {$term->to|date:'d.m.Y'})</span></a>
+
+byla úspěšně odeslána do společnosti <b>{$company->name}</b>, která Vás bude v nejbližší době kontaktovat.<br><br>
+Děkujeme za zájem o naše služby.<br /><br />
+S pozdravem a přáním hezkého dne <br />
+TEAM evzdelavani.cz<br />
+<a n:href="//Homepage:default">www.evzdelavani.cz</a><br>
+email: <a href="mailto:{$mailto}">{$mailto}</a>

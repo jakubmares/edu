@@ -1,0 +1,20 @@
+{extends '../@layout.latte'}
+{block content}
+<div class="page-header">
+    {include breadcrumbLayout}
+    {if isset($course)}
+        <h1>
+            {$course->name} <a n:href="Course:edit $course->id" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+        </h1>
+    {/if}
+    {if isset($headline)}
+        <h1>{$headline}</h1>
+    {/if}
+</div>
+<div class="container-fluid">
+    {include subContent}
+</div>
+{/block}
+
+
+

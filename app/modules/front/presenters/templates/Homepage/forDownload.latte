@@ -1,0 +1,10 @@
+{* Latte template *}
+
+{block subContent}
+<h1>Ke stažení</h1>
+<ul class="list-group">
+  <li n:foreach="$files as $file" class="list-group-item">
+      <a href="{$basePath}/{$file->path}" target="blank"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> {$file->title}</a>
+  </li>
+</ul>
+{/block}

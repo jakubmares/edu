@@ -1,0 +1,36 @@
+{* Latte template *}
+
+{block subContent}
+<div class="ev-body__form">
+    <h1 n:block=title>Dotaz na kurz: {$course->name}</h1>
+
+    <form n:name=form class="form-horizontal ">
+
+        <div class="form-group">
+            <label n:name="name" class="col-sm-2 control-label">* Vaše jméno:</label>
+            <div class="col-sm-10">
+                <input n:name="name" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label n:name="email" class="col-sm-2 control-label">* Váš e-mail:</label>
+            <div class="col-sm-10">
+                <input n:name="email" class="form-control" placeholder="@">
+            </div>
+        </div>
+        <div class="form-group">
+            <label n:name="question" class="col-sm-2 control-label">* Text dotazu:</label>
+            <div class="col-sm-10">
+                <textarea n:name="question" class="form-control"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12 text-right">
+                <input n:name=send class="btn btn-warning">
+
+            </div>
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,46 @@
+{block content}
+<div class="page-header">
+    <h1>
+        Zápisník firem 
+        <a n:href="Company:create" class="btn btn-primary" role="button">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </a>
+    </h1>
+</div>
+
+
+{control notesGrid}
+<div id="noteModal"
+     class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalNote">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Poznamka</h4>
+            </div>
+            {snippet modal}
+                <div class="modal-body">
+                    {!$note}
+                </div>
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Duvod pristiho kontaktu</h4>
+                </div>
+                <div class="modal-body">
+                    {!$contactNote}
+                </div>
+            {/snippet}
+        </div>
+    </div>
+</div>
+
+{/block}
+
+{block callback}
+<script>
+    function modalShow()
+    {
+        $('#noteModal').modal('show');    // z dokumentace bootstrapu
+        //alert('hello');
+    }
+</script>
+{/block}

@@ -1,0 +1,20 @@
+<div class="page-header">
+    <h1>{$company->name}</h1>
+</div>
+<ul class="nav nav-tabs">
+    <li role="presentation" n:class="$presenter->isLinkCurrent('Company:detail') ? active">
+        <a n:href="Company:detail $company->id">Profil společnosti</a>
+    </li>
+    <li role="presentation" n:class="$presenter->isLinkCurrent('Company:description') ? active">
+        <a n:href="Company:description $company->id">Popis společnosti</a>
+    </li>
+    <li role="presentation"  n:class="$presenter->isLinkCurrent('Company:courses') ? active">
+        <a n:href="Company:courses $company->id">Kurzy</a>
+    </li>
+    <li role="presentation" n:class="$presenter->isLinkCurrent('Company:images') ? active">
+        <a n:href="Company:images $company->id">Obrázky</a>
+    </li>
+    <li role="presentation" n:class="$presenter->isLinkCurrent('Company:videos') ? active">
+        <a n:href="Company:videos $company->id">Videa</a>
+    </li>
+</ul>

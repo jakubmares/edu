@@ -1,0 +1,31 @@
+{* This is the welcome page, you can delete it *}
+
+{block content}
+<div class="page-header">
+    <h1>Spravované firmy</h1>
+</div>
+<div n:foreach="$companies as $company" class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading"><a n:href="Company:detail $company->id">{$company->name}</a></div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <a n:href="Company:detail $company->id" class="thumbnail">
+                    <img src="{$company->logo}" />                  
+                </a>
+            </div>
+            <div class="col-md-9">
+                <ul class="list-group">
+                    <li class="list-group-item"><b>ič:</b> {$company->ic}</li>
+                    <li class="list-group-item"><b>dič:</b> {$company->dic}</li>
+                    <li class="list-group-item">
+                        <b>fakturační adresa:</b> 
+                        {$company->addressBilling} 
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{/block}

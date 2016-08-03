@@ -1,0 +1,29 @@
+Dobrý den,<br /> 
+
+<b>{$order->name}</b>,<br />
+<p n:if="$order->email">
+    E-mail: <b>{$order->email}</b>,
+</p>
+<p n:if="$order->phone">    
+    telefon: <b>{$order->phone}</b>,
+</p>
+si právě přes portál <a n:href="//Homepage:default">www.evzdelavani.cz</a> 
+objednal(a) kurz: "<a n:href="//Course:course $course->seokey">{$course->name} ({$term->from|date:'d.m.Y'}<span n:if="$term->from != $term->to"> - {$term->to|date:'d.m.Y'})</span></a>
+<br /><br />
+<p n:if="$order->billing_info">
+    Fakturační adresa:<br />
+    {$order->billing_info}
+</p>
+<br />
+<p n:if="$order->note">
+    Poznámka:<br />
+    {$order->note}
+</p>
+<br />
+Kontaktujte jej prosím.<br />
+Děkujeme za vyřízení objednávky.<br /><br />
+
+S pozdravem a přáním hezkého dne <br />
+TEAM evzdelavani.cz<br />
+<a n:href="//Homepage:default">www.evzdelavani.cz</a><br />
+email: <a href="mailto:{$mailto}">{$mailto}</a>

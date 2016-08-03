@@ -1,0 +1,27 @@
+{* Latte template *}
+
+{block subContent}
+<div class="ev-article">
+    <h1 n:block=title>{$personality->name}</h1>
+    <div class="media ev-article__header">
+        <div class="media-body">
+            {!$personality->description}
+        </div>
+        <div class="media-right">
+            <img class="media-object" src="{$personality->image}" alt="{$personality->name}">
+        </div>
+    </div>
+    <div class="ev-article__content">
+         <div n:foreach="$articles as $article" class="row">
+            <div class="col-md-12">
+                <b>{$article->publishedAt|date:'d.m.Y'}&nbsp;&nbsp;&nbsp;&nbsp;<a n:href="Article:interview $article->seokey">{$article->title}</a></b>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center">
+            {include paginator}
+        </div>
+    </div>
+</div>
+{/block}

@@ -1,0 +1,52 @@
+{block subContent}
+<div class="ev-body__form">
+    <h1  n:block=title>Objednávka kurzu: {$course->name} ({$term->from|date:'d.m.Y'}<span n:if="$term->from != $term->to"> - {$term->to|date:'d.m.Y'}</span>)</h1>
+    <form n:name=form class="form-horizontal ">
+
+        <div class="form-group">
+            <label n:name="name" class="col-sm-2 control-label">* Jméno:</label>
+            <div class="col-sm-10">
+                <input n:name="name" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label n:name="email" class="col-sm-2 control-label">* e-mail:</label>
+            <div class="col-sm-10">
+                <input n:name="email" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label n:name="phone" class="col-sm-2 control-label">* telefon:</label>
+            <div class="col-sm-10">
+                <input n:name="phone" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label n:name="billing_info" class="col-sm-2 control-label">
+                * Fakturační adresa, IČO:
+            </label>
+            <div class="col-sm-10">
+                <textarea n:name="billing_info" class="form-control" ></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label n:name="member_count" class="col-sm-2 control-label">Počet účastníků:</label>
+            <div class="col-sm-10">
+                <input n:name="member_count" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label n:name="note" class="col-sm-2 control-label">Poznámka:</label>
+            <div class="col-sm-10">
+                <textarea n:name="note" class="form-control" placeholder="jména účastníků, pokud jich je více, nebo jiný účastník, než objednatel"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12 text-right">
+                <input n:name=send class="btn btn-warning">
+
+            </div>
+        </div>
+    </form>
+</div>

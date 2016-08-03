@@ -1,0 +1,16 @@
+<div class="page-header">
+    <h1>
+        {$company->name} 
+        <a n:href="edit $company->id,'backlink'=>$backlink" class="btn btn-primary" role="button" data-toggle="tooltip" data-placement="bottom" title="Editovat firmu">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+        </a>
+    </h1>
+</div>
+<ul class="nav nav-tabs">
+    <li role="presentation" n:class="$presenter->isLinkCurrent('Company:notes') ? active">
+        <a n:href="Company:notes $company->id">Poznamky</a>
+    </li>
+    <li role="presentation" n:class="$presenter->isLinkCurrent('Company:detail') ? active">
+        <a n:href="Company:detail $company->id">Detail</a>
+    </li>
+</ul>

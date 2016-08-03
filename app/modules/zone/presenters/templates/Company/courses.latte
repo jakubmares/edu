@@ -1,0 +1,11 @@
+{* Latte template *}
+
+{block content}
+{include "nav.latte", company => $company}
+<div class="container-fluid ev-body__container--1">
+    <div class="page-header">
+        <h2>Kurzy společnosti <a n:href="Course:create $company->id" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></h2>
+    </div>
+
+    {control gridCourses}
+</div>

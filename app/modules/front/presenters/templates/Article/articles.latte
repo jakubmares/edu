@@ -1,0 +1,35 @@
+{* Latte template *}
+
+{block subContent}
+
+<h1 n:block=title>Články</h1>
+<div class="ev-body__articles">
+    {foreach $articles as $article}
+        <div class="row">
+            <div class="col-md-12">
+                <article>
+                    <header>
+                        <h2><a n:href="Article:article $article->seokey">{$article->title}</a></h2>
+                        <span class="ev-body__articles-date">{$article->publishedAt|date:'d.m.Y'}</span>
+                    </header>
+                    <div class="media">
+                        <div class="media-left">
+                            <a n:href="Article:article $article->seokey">
+                                <img class="media-object" src="{$article->image}" alt="{$article->title}">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            {!$article->perex}
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    {/foreach}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center">
+            {include paginator}
+        </div>
+    </div>
+</div>
+{/block}

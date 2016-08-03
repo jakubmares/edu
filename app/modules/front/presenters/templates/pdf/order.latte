@@ -1,0 +1,37 @@
+<div style="font-family: Times; font-size: 14px;">
+    <div style="margin-bottom: 20px">
+        <b>Objednávka kurzu</b> <br/>
+        {$course->name}<br/>
+        ze dne {$order->created_at|date:'d.m.Y'}<br/>
+        z portálu www.evzdelavani.cz
+    </div>
+    <div style="margin-bottom: 20px">
+        <b>Dodavatel:</b><br/>
+        {$company->name}<br/>
+        {$billingAddress->StreetAd}<br/>
+        {$billingAddress->zip} {$billingAddress->city}<br/>
+        IČO: {$company->ic}
+    </div>
+    <div style="margin-bottom: 20px">
+        <b>Objednatel:</b><br/>
+        Jméno: {$order->name}<br/>
+        E-mail: {$order->email}<br/>
+        Telefon: {$order->phone}<br/>
+        Fakturacní adresa, ICO:<br/>
+        {$order->billing_info}
+    </div>
+    <div style="margin-bottom: 20px">
+       Pocet úcastníku: {$order->member_count}
+    </div>
+    <div style="margin-bottom: 20px">
+        <b>Poznámka:</b><br/>
+        {$order->note}
+    </div>
+    <div style="margin-bottom: 20px">
+        <b>Celková cena:</b> {$term->totalPrice|number:'0':',':' '} {$term->currency}
+    </div>
+    <div>
+    Děkujeme za vyřízení objednávky.<br/>
+    Tým evzdelávání.cz
+    </div>
+</div>

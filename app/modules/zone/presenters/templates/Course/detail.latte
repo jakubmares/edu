@@ -1,0 +1,45 @@
+{block subContent}
+{include 'nav.latte', company => $company,course =>$course}
+<div class="container-fluid ev-body__container--1">
+    <div class="page-header">
+        <h2>Detail kurzu</h2>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item"><b>Název:</b> {$course->name}</li>
+        <li class="list-group-item"><b>Jazyk:</b> {$course->language}</li>
+        <li class="list-group-item"><b>Rekvalifikační:</b> {$course->retraining?'Ano':'Ne'}</li>
+        <li class="list-group-item"><b>Aktivní:</b> {$course->active?'Ano':'Ne'}</li>
+        <li class="list-group-item"><b>Úroveň znalostí:</b> {foreach $course->levels as $level}{$level}{sep}, {/sep}{/foreach}</li>
+        <li class="list-group-item"><b>Externí Url:</b> {$course->linkUrl}</li>
+    </ul>
+</div>
+<div class="container-fluid ev-body__container--2">
+    <div class="page-header">
+        <h2>Zaměření <a n:href="CourseFocus:edit $course->id" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></h2>
+    </div>
+    <ul class="list-group">
+        <li n:foreach="$catFoc as $categoryId => $focuses" class="list-group-item">
+            <b>{$focuses[0]->category->name}</b>
+            <ul>
+                <li n:foreach="$focuses as $focus">{$focus->name}</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div class="container-fluid ev-body__container--3">
+    <div class="page-header">
+        <h2>Popis <a n:href="Course:editDescription $course->id" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></h2>
+    </div>
+    {!$course->description}
+</div>
+<div class="container-fluid ev-body__container--2">
+    <div class="page-header">
+        <h2>Klíčová slova <a n:href="CourseKeyword:create $course->id" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></h2>
+    </div>
+    {foreach $course->keywords as $keyword}
+        <span class="label label-default">
+            {$keyword->keyword} <a n:href="CourseKeyword:delete $keyword->id"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+        </span>
+        {sep}&nbsp;{/sep}
+    {/foreach}
+</div>

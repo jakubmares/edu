@@ -1,0 +1,116 @@
+{block content}
+{include nav.latte, company=>$company}
+<div class="media">
+    <div class="media-left">
+        <img class="media-object" src="{$company->logo}" alt="logo">
+    </div>
+    <div class="media-body">
+        <ul class="list-group">
+            <li class="list-group-item"><b>IČ:</b> {$company->ic}</li>
+            <li class="list-group-item"><b>DIČ:</b> {$company->dic}</li>
+            <li class="list-group-item"><b>Fakturační adresa:</b> {$company->addressBilling}</li>
+            <li class="list-group-item"><b>Obchodník:</b> {if $company->dealer}{$company->dealer->name}{/if}</li>
+            <li class="list-group-item"><b>Web:</b> <a href="{$company->webUrl}" target="blank">{$company->web}</a></li>
+            <li class="list-group-item"><b>Aktivní:</b> {$company->active?"Ano":"Ne"}</li>
+            <li class="list-group-item"><b>Typ:</b> {$company->typeLabel}</li>
+            <li class="list-group-item"><b>Potenciál:</b> {$company->potencialLabel}</li>
+            <li class="list-group-item"><b>Status:</b> {$company->statusLabel}</li>
+        </ul>
+    </div>
+</div>
+<div class="page-header">
+    <h2>
+        Kontaktni osoby <a n:href="Contact:createContact $company->id" class="btn btn-primary" role="button" data-toggle="tooltip" data-placement="bottom" title="Nová kontaktní osoba">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </a>
+    </h2>
+</div>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Jmeno</th>
+                <th>Funkce</th>
+                <th>e-mail</th>
+                <th>telefon</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr n:foreach="$contacts as $contact">
+                <td>{$contact->name}</td>
+                <td>{$contact->function}</td>
+                <td>{$contact->email}</td>
+                <td>{$contact->phone}</td>
+                <td>
+                    <a n:href="Contact:editContact $contact->id, backlink => $backlink" data-toggle="tooltip" data-placement="bottom" title="Editovat">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </a>
+                    <a n:href="Contact:delete $contact->id" data-toggle="tooltip" data-placement="bottom" title="Smazat">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="page-header">
+    <h2>
+        Poznamky <a n:href="Note:new $company->id" class="btn btn-primary" role="button" data-toggle="tooltip" data-placement="bottom" title="Nová poznámka">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </a>
+    </h2>
+</div>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Datum kontaktu</th>
+                <th>Kontaktni osoba</th>
+                <th>Datum pristiho kontaktu</th>
+                <th>Zapsal</th>
+                <th>Vyrizeno</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr n:foreach="$notes as $note">
+                <td>{$note->contactAt|date:'d.m.Y'}</td>
+                <td>{if $note->contact}{$note->contact->name}{/if}</td>
+                <td>{$note->nextContactAt->getTimestamp() > 0?$note->nextContactAt|date:'d.m.Y'}</td>
+                <td>{if $note->owner}{$note->owner->name}{/if}</td>
+                <td>{$note->done?'Ano':'Ne'}</td>
+                <td>
+                    <a n:href="Note:edit $note->id" data-toggle="tooltip" data-placement="bottom" title="Editovat">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </a>
+                    &nbsp;
+                    <a href="#" data-toggle="modal" data-target="#noteModal-{$note->id}">
+                        <span class="glyphicon glyphicon-modal-window" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Detail"></span>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- Modal -->
+<div n:foreach="$notes as $note" id="noteModal-{$note->id}"
+     class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalNote">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Poznamka</h4>
+            </div>
+            <div class="modal-body">
+                {!$note->note}
+            </div>
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Duvod pristiho kontaktu</h4>
+            </div>
+            <div class="modal-body">
+                {!$note->contactNote}
+            </div>
+        </div>
+    </div>
+</div>

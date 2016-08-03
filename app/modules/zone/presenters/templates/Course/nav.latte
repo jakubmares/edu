@@ -1,0 +1,14 @@
+<ul class="nav nav-tabs">
+    <li role="presentation" n:class="$presenter->isLinkCurrent('Course:detail') ? active">
+        <a n:href="Course:detail $course->id">Detail kurzu</a>
+    </li>
+    <li role="presentation"  n:class="$presenter->isLinkCurrent('Course:terms') ? active">
+        <a n:href="Course:terms $course->id">Termíny</a>
+    </li>
+    <li role="presentation" n:class="$presenter->isLinkCurrent('Course:images') ? active">
+        <a n:href="Course:images $course->id">Obrázky</a>
+    </li>
+    <li role="presentation" n:class="$presenter->isLinkCurrent('Course:videos') ? active">
+        <a n:href="Course:videos $course->id">Videa</a>
+    </li>
+</ul>

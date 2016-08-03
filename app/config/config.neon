@@ -1,0 +1,74 @@
+#
+# WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+# https://nette.org/security-warning
+#
+parameters:
+
+php:
+	date.timezone: Europe/Prague
+
+
+application:
+	errorPresenter: Error
+	mapping:
+		*: App\Module\*\Presenters\*Presenter
+
+
+session:
+	expiration: 14 days
+
+
+services:
+	- App\Components\IAddressFormFactory
+	- App\Components\ICourseControlFactory
+	- App\Components\ICompanyFormFactory
+	- App\Components\IContactFormFactory
+	- App\Components\IImageFormFactory
+	- App\Components\IVideoFormFactory
+
+	- App\Model\AddressManager
+	- App\Model\AdviceManager
+	- App\Model\ArticleManager
+	- App\Model\CategoryManager
+	- App\Model\CurrencyManager
+	- App\Model\CompanyCategoryManager
+	- App\Model\CompanyFocusManager
+	- App\Model\CompanyImageManager
+	- App\Model\CompanyManager
+	- App\Model\CompanyVideoManager
+	- App\Model\ContactManager
+	- App\Model\CountryManager
+	- App\Model\CourseFocusManager
+	- App\Model\CourseImageManager
+	- App\Model\CourseKeywordManager
+	- App\Model\CourseLevelManager
+	- App\Model\CourseManager
+	- App\Model\CourseVideoManager
+	- App\Model\FocusManager
+	- App\Model\LanguageManager
+	- App\Model\LevelManager
+	- App\Model\FileManager
+	- App\Model\FlagManager
+	- App\Model\NoteManager
+	- App\Model\OrderManager
+	- App\Model\PartnerManager
+	- App\Model\PersonalityManager
+	- App\Model\QuestionManager
+	- App\Model\RoleManager
+	- App\Model\StaticPageManager
+	- App\Model\TermManager
+	- App\Model\UserManager
+	- App\Model\UserRoleManager
+
+	- App\Forms\SignFormFactory
+
+	- App\Model\Db2(@database.db2)  
+
+	mailService: App\Model\MailService
+	importManager: App\Model\ImportManager
+	authorizator: App\Model\PermissionManager
+	router: App\RouterFactory::createRouter
+
+
+
+	

@@ -1,0 +1,26 @@
+{* Latte template *}
+
+{block subContent}
+<article class="ev-article col-md-12">
+    <h1 n:block=title>{$article->title}</h1>
+    <div class="ev-article__body">
+        <div class="media">
+            <div class="media-left">
+                <a n:href="Personality:personality $personality->seokey">
+                    <img class="media-object" src="{$personality->image}" alt="{$personality->name}">
+                </a>
+            </div>
+            <div class="media-body">
+                <a n:href="Personality:personality $personality->seokey"><h4 class="media-heading">{$personality->name}</h4></a>
+                    {$article->publishedAt|date:'d.m.Y'}
+            </div>
+        </div>
+        <div>
+            {!$article->content}
+        </div>
+        <div class="text-right">
+            {$article->author}
+        </div>   
+    </div>
+</article>
+{/block}

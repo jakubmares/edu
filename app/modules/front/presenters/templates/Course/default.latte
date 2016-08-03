@@ -1,0 +1,109 @@
+{*block rightContent}
+<div class="ev-right-panel__top-companies">
+    <ul class="ev-right-panel__categories">
+        <li n:foreach="$categories as $category">
+            <a n:href="Course:category $category->seokey">
+                <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> {$category->name}
+            </a>
+            <ul class="ev-right-panel__focuses">
+                <li n:foreach="$category->activeFocuses as $focus">
+                    <a n:href="Course:focus $category->seokey, $focus->seokey">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> {$focus->name}
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+{/block*}
+{block subContent}
+<div>
+    <h1 n:block=title>Kurzy odpovídající vašemu hledání</h1>
+    <nav class="ev-navbar-search">
+        <form n:name="searchCourseForm" role="search">
+            <div class="row  ev-navbar-search__row--thin">
+                <div class="col-md-offset-6 col-md-6 text-right">
+                    <a class="ev-main-tabs__button--more" data-toggle="collapse" href="#collapseCourseForm" aria-expanded="false" aria-controls="collapseCourseForm">
+                        Rozšířené hledání <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="row ev-navbar-search__row">
+                <div class="col-md-6">
+                    <div><label n:name="courseTerm">JAKÝ KURZ HLEDÁTE</label></div>
+                    <input n:name="courseTerm" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <div><label n:name="address">KDE KURZ HLEDÁTE</label></div>
+                    <input n:name="address" class="form-control">
+                </div>
+            </div>
+            <div class="collapse" id="collapseCourseForm">
+                <div class="row ev-navbar-search__row">
+                    <div class="col-md-6">
+                        {snippet categorySnippet}
+                            <div><label n:name="category" >KATEGORIE</label></div>
+                            <select n:name="category" class="form-control"></select>
+                        {/snippet}
+                    </div>
+                    <div class="col-md-6">
+                        {snippet focusSnippet}
+                            <div><label n:name="focus" >ZAMĚŘENÍ</label></div>
+                            <select n:name="focus" class="form-control"></select>
+                        {/snippet}
+                    </div>
+                </div>
+                <div class="row ev-navbar-search__row">
+                    <div class="col-md-6">
+                        <div><label n:name="dateFrom">OMEZENÍ TERMÍNU OD</label></div>
+                        {input dateFrom}
+                    </div>
+
+                    <div class="col-md-6">
+                        <div><label n:name="dateFrom">OMEZENÍ TERMÍNU DO</label></div>
+                        {input dateTo}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <input n:name="search" class="btn btn-default" value="HLEDAT">
+                </div>
+            </div>
+        </form>
+    </nav>
+    <div class="panel panel-default ev-body__terms">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <div class="media">
+                <div class="media-left">
+                    <img class="media-object" src="/images/book.png" alt="lastminute">
+                </div>
+                <div class="media-body media-middle">
+                    <h2 class="media-heading"> Nalezeno {$paginator->getItemCount()} aktuálních nabídek školení.</h2>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- List group -->
+        <ul class="list-group">
+            <li n:foreach="$terms as $term" class="list-group-item">
+                {include termsListItem, term=>$term}
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center">
+            {include paginator}
+        </div>
+    </div>
+</div>
+{/block}
+
+{block callback}
+<script>
+    {include #jsCallback, input => category, link => categoryChange}
+    {include #jsCallback, input => focus, link => focusChange}
+</script>
+{/block}

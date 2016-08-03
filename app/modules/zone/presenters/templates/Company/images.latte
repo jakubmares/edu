@@ -1,0 +1,26 @@
+{* Latte template *}
+
+{block content}
+{include "nav.latte", company => $company}
+<div class="container-fluid ev-body__container--1">
+    <div class="page-header">
+        <h2>Obrazky společnosti <a n:href="CompanyImage:create $company->id" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></h2>
+    </div>
+
+    {foreach $images as $image}
+        {first 4}<div class="row">{/first}
+            <div class="col-md-3">
+                <div class="thumbnail">
+                    <img src="{$image->img}" class="img-responsive" alt="{$image->title}">
+                    <div class="caption">
+                        <h5>{$image->title} 
+                            <a n:href="CompanyImage:edit $image->id"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                            <a n:href="CompanyImage:delete $image->id"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                        </h5>
+                        <p>Aktivni: {$image->active?'Ano':'Ne'}</p>
+                    </div>
+                </div>
+            </div>
+            {last 4}</div>{/last}
+        {/foreach}
+</div>

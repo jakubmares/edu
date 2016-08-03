@@ -1,0 +1,27 @@
+{block subContent}
+{include 'nav.latte', company => $company,course =>$course}
+<div class="container-fluid ev-body__container--1">
+    <div class="page-header">
+        <h2>Videa kurzu <a n:href="CourseVideo:create $course->id" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></h2>
+    </div>
+    {foreach $videos as $video}
+        {first 4}<div class="row">{/first}
+            <div class="col-md-3">
+                <div class="thumbnail">
+                    <div class="embed-responsive embed-responsive-4by3">
+                        <iframe class="embed-responsive-item" src='https://www.youtube.com/embed/{$video->video}?rel=0&amp;showinfo=0"' frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="caption">
+                        <h5>
+                            <a n:href="CourseVideo:edit $video->id"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                            <a n:href="CourseVideo:delete $video->id" onclick="return confirm('Opravdu chcete video smazat?')">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </a>
+                        </h5>
+                        <p>Aktivni: {$video->active?'Ano':'Ne'}</p>
+                    </div>
+                </div>
+            </div>
+            {last 4}</div>{/last}
+        {/foreach}
+</div>

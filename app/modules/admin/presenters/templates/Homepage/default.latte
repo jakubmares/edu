@@ -1,0 +1,61 @@
+{* This is the welcome page, you can delete it *}
+
+{block content}
+<h1>Statistiky</h1>
+<table class="table table-striped table-hover table-responsive table-bordered"> 
+    <thead> 
+        <tr> 
+            <th></th> 
+            <th>Vše</th> 
+            <th>Aktivní</th> 
+        </tr> 
+    </thead> 
+    <tbody> 
+        <tr> 
+            <th scope="row">Uživatelé</th> 
+            <td>{$usersCount}</td> 
+            <td>{$usersActiveCount}</td> 
+        </tr> 
+        <tr> 
+            <th scope="row">Společnosti</th> 
+            <td>{$companyCount}</td> 
+            <td>{$companyActiveCount}</td> 
+        </tr> 
+        <tr> 
+            <th scope="row">Kurzy</th> 
+            <td>{$courseCount}</td> 
+            <td>{$courseActiveCount}</td> 
+        </tr> 
+        <tr> 
+            <th scope="row">Termíny</th> 
+            <td>{$termCount}</td> 
+            <td>{$termActiveCount}</td> 
+        </tr> 
+        <tr> 
+            <th scope="row">Dotazy</th> 
+            <td>{$questionCount}</td> 
+            <td></td> 
+        </tr> 
+        <tr> 
+            <th scope="row">Objednávky</th> 
+            <td>{$orderCount}</td> 
+            <td></td> 
+        </tr> 
+        <tr> 
+            <th scope="row">Články</th> 
+            <td>{$articleCount}</td> 
+            <td>{$articleActiveCount}</td> 
+        </tr> 
+        <tr> 
+            <th scope="row">Rozhovory</th> 
+            <td>{$interviewCount}</td> 
+            <td>{$interviewActiveCount}</td> 
+        </tr> 
+        <tr> 
+            <th scope="row">Osobnosti</th> 
+            <td>{$personalityCount}</td> 
+            <td>{$personalityActiveCount}</td> 
+        </tr> 
+    </tbody> 
+</table>
+{/block}

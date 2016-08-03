@@ -1,0 +1,57 @@
+{* Latte template *}
+
+{block subContent}
+<div class="ev-list--personality">
+    <h1 n:block=title>Osobnosti</h1>
+    <div class="ev-list__list">
+        {foreach $personalities as $personality}
+            <div class="media">
+                <div class="media-body">
+                    <div class="row">        
+                        <div class="col-md-3">
+                            <h2><a n:href="Personality:personality $personality->seokey">{$personality->name}</a></h2>
+                        </div>
+                        <div class="col-md-9">
+                            {!$personality->description}
+                        </div>
+                    </div>
+                </div>
+                <div class="media-right">
+                    <img class="media-object" src="{$personality->image}" alt="{$personality->name}">
+                </div>
+            </div>
+            {*
+            <div class="row">
+                <div class="col-md-3">
+                    <h2><a n:href="Personality:personality $personality->seokey">{$personality->name}</a></h2>
+                </div>
+                <div class="col-md-6">
+                    {!$personality->description}
+                </div>
+                <div class="col-md-3 text-right">
+                    <img src="{$personality->image}" alt="{$personality->name}">
+                </div>
+                
+            <div class="col-md-12">
+                <div class="media">
+                    <div class="media-body">
+                        <h2><a n:href="Personality:personality $personality->seokey">{$personality->name}</a></h2>
+                            {!$personality->description}
+                    </div>
+                    <div class="media-right">
+                        <img class="media-object" src="{$personality->image}" alt="{$personality->name}">
+                    </div>
+                </div>
+                </div>
+                
+            </div>
+            *}
+        {/foreach}
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center">
+            {include paginator}
+        </div>
+    </div>
+</div>
+{/block}

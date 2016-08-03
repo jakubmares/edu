@@ -1,0 +1,25 @@
+{* Latte template *}
+
+{block subContent}
+<article class="ev-article col-md-12">
+    <header>
+        <h1 n:block=title>{$article->title}</h1>
+    </header>
+    <div class="media ev-article__header">
+        <div class="ev-article__header-author">
+        {$article->author}<br>
+        {$article->publishedAt|date:'d.m.Y'}
+        </div>
+        <div class="media-left">
+            <img class="media-object" src="{$article->image}" alt="...">
+        </div>
+        <div class="media-body">
+            <i>{!$article->perex}</i>
+        </div>
+    </div>
+    <div class="ev-article__content">
+        {!$article->content}
+    </div>
+    
+</article>
+{/block}

@@ -1,0 +1,329 @@
+{block content}
+<div class="row">
+    <div class="hidden-xs hidden-sm ev-left-panel col-md-3">
+        <div class="ev-left-panel__logo">
+            <a n:href="Homepage:default">
+                <img src="{$basePath}/images/logo-text.png" class="img-responsive" alt="Logo" />
+            </a>
+        </div>
+
+        <ul n:foreach="$categories as $category" class="ev-left-panel__category-list">
+            <li class="ev-left-panel__category">
+                <a n:href="Course:category $category->seokey">{$category->name}</a>
+                <ul class="ev-left-panel__focus-list">
+                    <li n:foreach="$category->activeFocuses as $focus">
+                        <a n:href="Course:focus $category->seokey,$focus->seokey">{$focus->name}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+
+        <div class="ev-left-panel__interviews">
+            <h2><i class="fa fa-comments" aria-hidden="true"></i> Osobnosti, rozhovory</h2>
+            {foreach $interviews as $interview}
+                <article class="ev-left-panel__interview">
+                    <a n:href="Personality:personality $interview->personality->seokey" class="ev-left-panel__interview-img">
+                        <img class="media-object" src="{$interview->personality->image}" alt="{$interview->personality->name}">
+                    </a>
+                    <div>
+                        <a n:href="Personality:personality $interview->personality->seokey">
+                            <h3 class="media-heading">{$interview->personality->name}</h3>
+                        </a>
+                        <a n:href="Article:interview $interview->seokey">{$interview->title}</a>
+                    </div>
+
+                </article>
+
+            {/foreach}
+
+            <div>
+                <a n:href="Article:interviews">Všechny rozhovory</a>
+            </div>
+            <div>
+                <a n:href="Personality:personalityList">Všechny osobnosti</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+
+        <div class="ev-search">
+            <div class="ev-banner">
+                <a n:href="Homepage:default" class="visible-xs visible-sm">
+                    <img src="/images/sub-logo-3.jpg" class="img-responsive center-block" alt="Logo" />
+                </a>
+                <p>NEJCHYTŘEJŠÍ VYHLEDÁVAČ!</p>
+                <p>Více než 16 000 kurzů, školení a vzdělávání z celé ČR</p>
+            </div>
+            <div class="ev-main-tabs">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" n:class="!$ctab?active">
+                        <a class="ev-main-tabs__course-tab" href="#coursesForm" aria-controls="Katalog kurzů" role="tab" data-toggle="tab">
+                            Katalog kurzů <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                    <li role="presentation" n:class="$ctab?active">
+                        <a class="ev-main-tabs__company-tab" href="#companyForm" aria-controls="Katalog firem" role="tab" data-toggle="tab">
+                            Katalog firem <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" n:class="ev-main-tabs__course-pane, tab-pane, !$ctab?active" id="coursesForm">
+                        <form n:name="searchCourseForm">
+                            <!-- Jednoduché vykreslení chyb -->
+                            <ul class="errors" n:if="$form->hasErrors()">
+                                <li n:foreach="$form->errors as $error">{$error}</li>
+                            </ul>
+                            <div class="row">
+                                <div class="col-md-6"><label n:name="courseTerm">JAKÝ KURZ HLEDÁTE</label></div>
+                                <div class="col-md-6 text-right">
+                                    <a class="ev-main-tabs__button--more" data-toggle="collapse" href="#collapseCourseForm" aria-expanded="false" aria-controls="collapseCourseForm">
+                                        Rozšířené hledání <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12"><input n:name="courseTerm" class="form-control"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12"><label n:name="address">KDE KURZ HLEDÁTE</label></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12"><input n:name="address" class="form-control"></div>
+                            </div>
+                            <div class="collapse" id="collapseCourseForm">
+                                {snippet categorySnippet}
+                                    <div class="row">
+                                        <div class="col-md-12"><label n:name="category">KATEGORIE</label></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12"><select n:name="category" class="form-control"></select></div>
+                                    </div>
+                                {/snippet}
+                                {snippet focusSnippet}
+                                    <div class="row">
+                                        <div class="col-md-12"><label n:name="focus" >ZAMĚŘENÍ</label></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12"><select n:name="focus" class="form-control"></select></div>
+                                    </div>
+                                {/snippet}
+                                <div class="row">
+                                    <div class="col-md-12"><label n:name="dateFrom">OMEZENÍ TERMÍNU</label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        {input dateFrom}
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        {input dateTo}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-right">
+                                    <input n:name="search" class="ev-main-tabs__button btn btn-default btn-lg" value="HLEDAT">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div role="tabpanel" n:class="ev-main-tabs__company-pane, tab-pane, $ctab?active" id="companyForm">
+                        <form n:name="searchCompanyForm">
+                            <!-- Jednoduché vykreslení chyb -->
+                            <ul class="errors" n:if="$form->hasErrors()">
+                                <li n:foreach="$form->errors as $error">{$error}</li>
+                            </ul>
+                            <div class="row">
+                                <div class="col-md-12"><label n:name="companyTerm">JAKOU FIRMU HLEDÁTE</label></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12"><input n:name="companyTerm" class="form-control"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12"><label n:name="address">KDE FIRMU HLEDÁTE</label></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12"><input n:name="address" class="form-control"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-right">
+                                    <input n:name="search" class="ev-main-tabs__button--company btn btn-default btn-lg" value="HLEDAT">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="ev-advices row">
+                <div class="col-md-12">
+                    <div  n:foreach="$advices as $advice" class="media">
+                        <div class="media-left">
+                            <img class="media-object" src="/images/owl-tip.png" alt="NÁŠ TIP">
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">{$advice->header}</h3>
+                            {!$advice->content}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div n:if="$termsLastminute" class="ev-lastminutes">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="media-object" src="/images/lastminute.png" alt="lastminute">
+                        </div>
+                        <div class="media-body">
+                            <h2 class="media-heading">LAST MINUTE KURZY</h2>
+                            <h3>vzdělávání na poslední chvíli</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- List group -->
+                <ul class="list-group">
+                    <li n:foreach="$termsLastminute as $term" class="list-group-item">
+                        <div class="row ev-term--lastminute">
+                            <div class="col-md-2 ev-term__date" data-toggle="tooltip" data-placement="bottom" 
+                                 title="{if !$term->noterm}{$term->from|date:'d.m.Y'}{if $term->from != $term->to} - {$term->to|date:'d.m.Y'}{/if}{/if}">
+                                {if $term->noterm}
+                                    Bez termínu
+                                {else}
+                                    {$term->from|date:'d.m'}{if $term->from != $term->to} - {$term->to|date:'d.m'}{/if}
+                                {/if}
+                            </div>
+                            <div class="col-md-5 ev-term__name">
+                                <a n:href="Course:course $term->course->seokey">
+                                    {$term->course->name}
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                {if $term->addressFlag}
+                                    <strong>online kurz</strong>
+                                {else}
+                                    <address>
+                                        <strong>
+                                            <a n:href="Company:company $term->course->company->seokey">
+                                                {$term->course->company->name}
+                                            </a>
+                                        </strong>
+                                        <br/>
+                                        <a href="https://www.google.cz/maps/place/{$term->address|webalize}" target="blank">
+                                            {if $term->street}{$term->streetAd}<br/>{/if}
+                                            {$term->city}
+                                        </a>
+                                    </address>
+                                {/if}
+                            </div>
+                            <div class="col-md-2 text-right">
+                                {if $term->priceFlag}
+                                    <strong>cena dohodou</strong>
+                                {else}
+                                    <div n:if="$term->discount" class="ev-term__price--old">
+                                        {$term->noDiscountPrice|number:'0':',':' '} {$term->currency}
+                                    </div>
+
+                                    <div class="ev-term__price--discount">
+                                        {$term->totalPrice|number:'0':',':' '} {$term->currency}
+                                    </div>
+                                {/if}
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="panel-footer text-right">
+                    <a n:href="Course:lastminute">Ostatní nabídka</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="ev-articles">               
+            <div class="page-header">
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object" src="/images/star.png" alt="lastminute">
+                    </div>
+                    <div class="media-body">
+                        <h2 class="media-heading">VZDĚLÁVACÍ ZPRAVODAJ</h2>
+                        <h3>zajímavé informace, kurzy, novinky, školeni</h3>
+                    </div>
+                </div>  
+            </div>
+
+            {foreach $articles as $article}
+                <div class="row">
+                    <article class="col-md-12">
+                        <header>
+                            <h4><a n:href="Article:article $article->seokey">{$article->title}</a></h4>
+                        </header>
+                        <div class="media">
+                            <div class="media-left">
+                                <a n:href="Article:article $article->seokey">
+                                    <img class="media-object" src="{$article->image}" alt="...">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                {!$article->perex}
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <hr>
+            {/foreach}
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <a n:href="Article:articles">Všechny články</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block topCompanies}
+<div class="ev-right-panel__top-companies">
+    <div class="row text-center">
+        <div class="col-md-12">
+            <h3>TOP FIRMY nabízející školení, kurzy, vzdělávání</h3>
+        </div>
+    </div>
+    <ul>
+        <li n:foreach="$topCompanies as $topCompany">
+            <a n:href="Company:company $topCompany->seokey">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> 
+                <span class="focus">{$topCompany->name}</span>
+            </a>
+        </li>
+    </ul>
+    <div class="text-right">
+        <a n:href="Company:default">Všechny firmy</a>
+    </div>
+</div>
+{/block}
+
+
+
+
+{block callback}
+<script>
+    {include #jsCallback, input => category, link => categoryChange}
+    {include #jsCallback, input => focus, link => focusChange}
+</script>
+{/block}
+
+
+
+
+
+

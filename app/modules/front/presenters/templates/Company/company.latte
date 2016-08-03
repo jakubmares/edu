@@ -1,0 +1,133 @@
+{* Latte template *}
+
+{block subContent}
+<div class="ev-course">
+    <h1 n:block=title>{$company->name}</h1>
+    <div class="row ev-course__info">
+        <div class="col-md-3 text-center">
+            <img src="{$company->logo}" alt="{$company->name}">
+        </div>
+        <div class="col-md-9">
+            <table>
+                <tr>
+                    <th>Adresa:</th>
+                    <td>
+                        <a href="https://www.google.cz/maps/place/{$company->addressBase|webalize}" target="blank">
+                            <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> {$company->addressBase}
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Kontakt:</th>
+                    <td>
+                        <div n:foreach="$contacts as $contact" class="row">
+                            <div class="col-md-6"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {$contact->phone}</div>
+                            <div class="col-md-6">
+                                <a href="mailto:{$contact->email}">
+                                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {$contact->email}
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Web:</th>
+                    <td>
+                        <a href="{$company->webUrl}" target="blank">{$company->web}</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>IČO:</th>
+                    <td>
+                        {$company->ic}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="ev-body__block">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#home" aria-controls="O společnosti" role="tab" data-toggle="tab">O společnosti {$company->name}</a></li>
+            <li role="presentation"><a href="#images" aria-controls="Obrázky" role="tab" data-toggle="tab">Obrázky</a></li>
+            <li role="presentation"><a href="#videos" aria-controls="Videa" role="tab" data-toggle="tab">Videa</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home">
+                {!$company->description}
+            </div>
+            <div role="tabpanel" class="tab-pane" id="images">
+                {foreach $images as $image}
+                    {first 4}<div class="row">{/first}
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <a href="{$image->img}">
+                                    <img src="{$image->img}" class="img-responsive" alt="{$image->title}">
+                                </a>
+                                <div class="caption">
+                                    {$image->title}
+                                </div>
+                            </div>
+                        </div>
+                        {last 4}</div>{/last}
+                    {/foreach}
+                    {if count($images)== 0}Ke společnosti nejsou k dispozici žádné obrázky.{/if}
+            </div>
+            <div role="tabpanel" class="tab-pane" id="videos">
+                {foreach $videos as $video}
+                    {first 4}
+                        <div class="row">
+                        {/first}
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <div class="embed-responsive embed-responsive-4by3">
+                                    <iframe class="embed-responsive-item" src='https://www.youtube.com/embed/{$video->video}?rel=0&amp;showinfo=0' frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                <div class="caption">
+                                    {$video->title}
+                                </div>
+                            </div>
+                        </div>
+                        {last 4}
+                        </div>
+                    {/last}
+                {/foreach}
+                {if count($videos)== 0}Ke společnosti nejsou k dispozici žádná videa.{/if}
+            </div>
+        </div>
+
+    </div>
+    <div class="ev-list">
+        <div class="panel panel-default ev-body__terms">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object" src="/images/book.png" alt="lastminute">
+                    </div>
+                    <div class="media-body media-middle">
+                        <h2 class="media-heading">Kurzy společnosti: {$company->name}</h2>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- List group -->
+            <ul class="list-group">
+                <li n:foreach="$terms as $term" class="list-group-item">
+                    {include termsListItem, term=>$term}
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                {include paginator}
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,123 @@
+{block rightContent}
+<div class="ev-right-panel__top-companies">
+    <ul class="ev-right-panel__focuses">
+        <li n:foreach="$category->activeFocuses as $focus">
+            <a n:href="Course:focus $category->seokey,$focus->seokey">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> 
+                <span class="focus">{$focus->name}</span>
+            </a>
+        </li>
+    </ul>
+</div>
+{/block}
+
+{block subContent}
+<h1 n:block=title>{$category->name}</h1>
+<div class="ev-list">
+    <div class="row">
+        <div n:foreach="$catPartners as $partner" class="col-md-2">
+            <a n:href="Company:company $partner->seokey" class="thumbnail">
+                <img src="{$partner->logo}" alt="{$partner->name}">
+            </a>
+        </div>
+    </div>
+    <nav class="ev-navbar-search">
+        <form n:name="searchCourseCategoryForm" role="search">
+            <div class="row  ev-navbar-search__row--thin">
+                <div class="col-md-offset-6 col-md-6 text-right">
+                    <a class="ev-main-tabs__button--more" data-toggle="collapse" href="#collapseCourseForm" aria-expanded="false" aria-controls="collapseCourseForm">
+                        Rozšířené hledání <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="row ev-navbar-search__row">
+                <div class="col-md-6">
+                    <div><label n:name="courseTerm">JAKÝ KURZ HLEDÁTE</label></div>
+                    <input n:name="courseTerm" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <div><label n:name="address">KDE KURZ HLEDÁTE</label></div>
+                    <input n:name="address" class="form-control">
+                </div>
+            </div>
+            <div class="collapse" id="collapseCourseForm">
+                <div class="row ev-navbar-search__row">
+                    <div class="col-md-12">
+                        <div><label n:name="focus" >ZAMĚŘENÍ</label></div>
+                        <select n:name="focus" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="row ev-navbar-search__row">
+                    <div class="col-md-6">
+                        <div><label n:name="dateFrom">OMEZENÍ TERMÍNU OD</label></div>
+                        {input dateFrom}
+                    </div>
+
+                    <div class="col-md-6">
+                        <div><label n:name="dateFrom">OMEZENÍ TERMÍNU DO</label></div>
+                        {input dateTo}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    {input category}
+                    <input n:name="search" class="btn btn-default" value="HLEDAT">
+                </div>
+            </div>
+        </form>
+    </nav>
+
+    <div class="panel panel-default  ev-body__terms">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <div class="media">
+                <div class="media-left">
+                    <img class="media-object" src="/images/book.png" alt="termíny kurzů">
+                </div>
+                <div class="media-body media-middle">
+                    <h2 class="media-heading">Nalezeno {$paginator->getItemCount()} nabídek školení v kategorii: {$category->name}</h2>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- List group -->
+        <ul class="list-group">
+            <li n:foreach="$terms as $term" class="list-group-item">
+                {include termsListItem, term=>$term}
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center">
+            <nav>
+                <ul class="pagination">
+                    <li n:if="!$paginator->isFirst()">
+                        <a n:href="paginate! ($paginator->getPage() - 1)" aria-label="Předchozí">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li n:foreach="$paginator->getPaginBefore() as $b">
+                        <a n:href="paginate! $b"  >{$b}</a>
+                    </li>
+                    <li class="active">
+                        <span>{$paginator->getPage()}</span>
+                    </li>
+                    <li n:foreach="$paginator->getPaginAfter() as $a" >
+                        <a n:href="paginate! $a">{$a}</a>
+                    </li>
+                    <li n:if="!$paginator->isLast()" >
+                        <a n:href="paginate! ($paginator->getPage() + 1)" aria-label="Další">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+{/block}
+
+
+

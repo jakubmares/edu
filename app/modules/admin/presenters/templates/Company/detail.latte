@@ -1,0 +1,94 @@
+{* Latte template *}
+
+{block content}
+
+{include nav.latte, company=>$company}
+<div class="media">
+    <div class="media-left">
+        <img class="media-object" src="{$company->logo}" alt="logo">
+    </div>
+    <div class="media-body">
+        <ul class="list-group">
+            <li class="list-group-item"><b>IČ:</b> {$company->ic}</li>
+            <li class="list-group-item"><b>DIČ:</b> {$company->dic}</li>
+            <li class="list-group-item"><b>Obchodník:</b> {if $company->dealer}{$company->dealer->name}{/if}</li>
+            <li class="list-group-item"><b>Vlastník:</b> {$company->owner->name}</li>
+            <li class="list-group-item"><b>Url klíč:</b> {$company->seokey}</li>
+            <li class="list-group-item"><b>Aktivní:</b> {$company->active?"Ano":"Ne"}</li>
+            <li class="list-group-item"><b>Založeno:</b> {$company->createdAt|date:'d.m.Y'}</li>
+            <li class="list-group-item"><b>Partner portálu:</b> {$company->partner?"Ano":"Ne"}</li>
+            <li class="list-group-item"><b>Top firma:</b> {$company->top?"Ano":"Ne"}</li>
+            <li class="list-group-item"><b>Typ:</b> {$company->typeLabel}</li>
+            <li class="list-group-item"><b>Potenciál:</b> {$company->potencialLabel}</li>
+            <li class="list-group-item"><b>Status:</b> {$company->statusLabel}</li>
+            <li class="list-group-item"><b>Web:</b> <a href="{$company->webUrl}" target="blank">{$company->webUrl}</a></li>
+            <li class="list-group-item"><b>Url importu:</b> {$company->importUrl}</li>
+            <li class="list-group-item"><b>Poslední import:</b> {$company->importAt|date:'d.m.Y'}</li>
+        </ul>
+    </div>
+</div>
+<div class="page-header">
+    <h2>Popis:</h2>
+</div>
+<div>{!$company->description} </div>
+
+<div class="page-header">
+    <h2>Kontakty <a n:href="Contact:create $company->id" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></h2>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Typ</th>
+            <th>Jmeno</th>
+            <th>Funkce</th>
+            <th>e-mail</th>
+            <th>telefon</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr n:foreach="$contacts as $contact">
+            <td>{$contact->label}</td>
+            <td>{$contact->name}</td>
+            <td>{$contact->function}</td>
+            <td>{$contact->email}</td>
+            <td>{$contact->phone}</td>
+            <td>
+                <a n:href="Contact:edit $contact->id"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                <a n:href="Contact:delete $contact->id"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-header">
+    <h2>Adresy <a n:href="Address:create $company->id" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></h2>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Typ</th>
+            <th>Adresa</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr n:foreach="$addresses as $address">
+            <td>{$address->label}</td>
+            <td>{$address->address}</td>
+
+            <td>
+                <a n:href="Address:edit $address->id"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                <a n:href="Address:delete $address->id"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
+
+

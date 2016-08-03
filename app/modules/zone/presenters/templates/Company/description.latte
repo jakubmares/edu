@@ -1,0 +1,10 @@
+{* Latte template *}
+
+{block content}
+{include "nav.latte", company=>$company}
+<div class="container-fluid ev-body__container--1">
+    <div class="page-header">
+        <h2>Popis společnosti <a n:href="Company:editDescription $company->id" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></h2>
+    </div>
+    {!$company->description}
+</div>

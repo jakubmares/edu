@@ -1,0 +1,30 @@
+{extends '../../../../presenters/templates/@layout.latte'}
+{block title}Admin{/block}
+{block module}Admnistrace{/block}
+{block mainNav}
+<li n:class="$presenter->isLinkCurrent(':Admin:Homepage:default') ? active"><a n:href=":Admin:Homepage:default" >Statistiky</a></li>
+<li n:class="$presenter->isLinkCurrent(':Admin:Company:list') ? active"><a n:href=":Admin:Company:list" >Firmy</a></li>
+<li n:class="$presenter->isLinkCurrent(':Admin:Note:list') ? active"><a n:href=":Admin:Note:list" >Poznámky</a></li>
+<li n:class="$presenter->isLinkCurrent(':Admin:User:*') ? active"><a n:href=":Admin:User:list">Uživatelé</a></li>
+<li n:class="$presenter->isLinkCurrent(':Admin:Course:*') ? active"><a n:href=":Admin:Course:categories">Kategorie kurzů</a></li>
+
+
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CMS <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li n:class="$presenter->isLinkCurrent(':Admin:Advice:*') ? active"><a n:href=":Admin:Advice:advices">Doporučení</a></li>
+        <li n:class="$presenter->isLinkCurrent(':Admin:Personality:*') ? active"><a n:href=":Admin:Personality:personalities">Osobnosti</a></li>
+        <li n:class="$presenter->isLinkCurrent(':Admin:Article:*') ? active"><a n:href=":Admin:Article:articles">Články a Rozhovory</a></li>
+        <li n:class="$presenter->isLinkCurrent(':Admin:StaticPage:*') ? active"><a n:href=":Admin:StaticPage:list">Statické stránky</a></li>
+        <li n:class="$presenter->isLinkCurrent(':Admin:Partner:*') ? active"><a n:href=":Admin:Partner:partners">Partneři</a></li>
+        <li n:class="$presenter->isLinkCurrent(':Admin:File:*') ? active"><a n:href=":Admin:File:list">Soubory</a></li>
+    </ul>
+</li>
+{/block}
+{block baseContent}
+<div class="container">
+    {include content}
+</div>
+{/block}
+{block footer}
+{/block}
